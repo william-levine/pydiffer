@@ -1,0 +1,12 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pydiffer"
+version = "0.1.0"
+description = "A tool to automatically detect differences between two Python codebases."
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = []
