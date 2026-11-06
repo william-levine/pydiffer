@@ -2,8 +2,6 @@ import ast
 from pathlib import Path
 from pydiffer import Codebase, compare_generic
 
-tmp_path = Path("./temp")
-
 def test_different_code(tmp_path: Path):
     project_a = tmp_path / "project_a"
     project_b = tmp_path / "project_b"
