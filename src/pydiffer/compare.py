@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 import pydiffer.parser as parser
 import ast
+from pathlib import Path
 
 
 @dataclass
@@ -11,9 +12,9 @@ class ComparisonResult:
     only_in_b: list[str]
 
 
-def compare_generic(path_a, path_b):
-    codebase_a = parser.parse_codebase(path_a)
-    codebase_b = parser.parse_codebase(path_b)
+def compare_generic(path_a: str | Path, path_b: str | Path):
+    codebase_a = parser.parse_codebase(Path(path_a))
+    codebase_b = parser.parse_codebase(Path(path_b))
 
     files_a = set(codebase_a.files)
     files_b = set(codebase_b.files)
