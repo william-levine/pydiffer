@@ -2,10 +2,21 @@ from pydiffer.codebase import Codebase
 from pathlib import Path
 import ast
 
-def parse_codebase(path: Path) -> Codebase:
+def parse_codebase(path: str | Path) -> Codebase:
+    """
+    Performs a basic comparison between two codebases based on their file structure and ASTs.
+    
+    Args:
+        `path`: The path to the codebase
+    
+    Returns:
+        A `Codebase` object containing the codebase name, path, and mapping of modules to ASTs.
+    """
+
+    path = Path(path)
+    files = path.rglob(f'*.py')
     file_structure : dict[str, ast.AST] = {}
     
-    files = path.rglob(f'*.py')
     for file in files:
         relative_path = file.relative_to(path)
         ast_tree = ast.parse(file.read_text())
