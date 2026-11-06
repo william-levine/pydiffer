@@ -6,10 +6,10 @@ from pathlib import Path
 
 @dataclass
 class ComparisonResult:
-    matching: list[str]
-    differing: list[str]
-    only_in_a: list[str]
-    only_in_b: list[str]
+    matching: set[str]
+    differing: set[str]
+    only_in_a: set[str]
+    only_in_b: set[str]
 
 
 def compare_generic(path_a: str | Path, path_b: str | Path):
@@ -19,8 +19,8 @@ def compare_generic(path_a: str | Path, path_b: str | Path):
     files_a = set(codebase_a.files)
     files_b = set(codebase_b.files)
 
-    m = list(files_a & files_b)
-    d = []
+    m = files_a & files_b
+    d = set()
 
     # m.copy() to avoid the size changing during iteration
     for path in m.copy():
@@ -28,10 +28,10 @@ def compare_generic(path_a: str | Path, path_b: str | Path):
         tree_b = codebase_b.files[path]
 
         if ast.dump(tree_a) != ast.dump(tree_b):
-            d.append(path)
+            d.add(path)
             m.remove(path)
     
-    a = list(files_a - files_b)
-    b = list(files_b - files_a)
+    a = files_a - files_b
+    b = files_b - files_a
 
     return ComparisonResult(m, d, a, b)
