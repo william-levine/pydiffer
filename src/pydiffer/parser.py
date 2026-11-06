@@ -9,7 +9,8 @@ def parse_codebase(path: Path) -> Codebase:
     for file in files:
         relative_path = file.relative_to(path)
         ast_tree = ast.parse(file.read_text())
-        file_structure[str(relative_path)] = ast_tree
+        # as_posix() normalises the path to "parent/child" (instead of "parent\\child")
+        file_structure[relative_path.as_posix()] = ast_tree
     
     codebase = Codebase(path.name, path, file_structure)
     return codebase
