@@ -10,7 +10,7 @@ def parse_codebase(path: str | Path) -> Codebase:
         `path`: The path to the codebase
     
     Returns:
-        A `Codebase` object containing the codebase name, path, and mapping of modules to ASTs.
+        A `Codebase` object containing the codebase name, path, and mapping of Python files to ASTs.
     """
 
     path = Path(path)

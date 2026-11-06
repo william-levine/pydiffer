@@ -10,7 +10,7 @@ class Codebase:
     Attributes: 
         `name`: The name of the Python codebase.
         `path`: The path to the Python codebase.
-        `files`: Mapping of module name to ASTs.
+        `files`: Mapping of Python filenames to ASTs.
     """
 
     name: str
