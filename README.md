@@ -6,13 +6,19 @@
 
 To install the latest development version directly from GitHub:
 
+### Using HTTPS
+
 ```bash
-git clone https://github.com/william-levine/pydiffer.git
-cd pydiffer
-pip install -e .
+pip install git+https://github.com/william-levine/pydiffer.git
 ```
 
-## Example
+### Using SSH
+```bash
+pip install git+ssh://git@github.com/william-levine/pydiffer.git
+```
+
+
+## Example Usage
 ```python
 from pydiffer import compare_generic
 
